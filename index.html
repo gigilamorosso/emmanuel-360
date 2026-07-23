@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel 360° — Votre agent IA, 2 business, 1 assistant</title>
+<meta name="description" content="Un agent IA dédié à Emmanuel Duverrière : Studio H-8 Architecture + Groupe Sphères + vie quotidienne. Veille, prospection, synergie, et bien plus.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e8;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== NAV ===== */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(10,10,15,0.85); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 0 24px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .navbar-logo {
+    font-size: 1.15rem; font-weight: 700;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .navbar-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .navbar-links a {
+    color: #a0a0b0; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .navbar-links a:hover { color: #c0c0d0; }
+  .nav-cta {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: #fff !important; padding: 6px 18px; border-radius: 8px;
+    font-size: 0.8rem; font-weight: 600;
+  }
+  .nav-cta:hover { opacity: 0.9; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 100px 24px 80px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(239,68,68,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(245,158,11,0.08) 0%, transparent 50%),
+                #0a0a0f;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(239,68,68,0.15); color: #f87171;
+    padding: 4px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.5px; margin-bottom: 28px;
+    border: 1px solid rgba(239,68,68,0.25);
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800;
+    line-height: 1.15; max-width: 820px; margin: 0 auto 20px;
+    background: linear-gradient(135deg, #f0f0ff 0%, #f87171 50%, #fbbf24 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: #808090;
+    max-width: 620px; margin: 0 auto 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: #fff; padding: 14px 36px; border-radius: 12px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(239,68,68,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(239,68,68,0.4); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.06); color: #e0e0e8;
+    padding: 14px 36px; border-radius: 12px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 88px 24px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-block;
+    background: rgba(245,158,11,0.12); color: #fbbf24;
+    padding: 2px 12px; border-radius: 100px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  h2 .highlight {
+    background: linear-gradient(135deg, #f87171, #fbbf24);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-sub {
+    color: #808090; font-size: 1.05rem; max-width: 640px; margin-bottom: 48px;
+  }
+
+  /* ===== PROFIL ===== */
+  .profil-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px;
+  }
+  .profil-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 28px;
+  }
+  .profil-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .profil-card .emoji { font-size: 1.5rem; margin-right: 8px; }
+  .profil-card ul { list-style: none; }
+  .profil-card li {
+    padding: 6px 0; font-size: 0.9rem; color: #b0b0b8;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .profil-card li:last-child { border-bottom: none; }
+  .profil-card li strong { color: #e0e0e8; }
+
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+  }
+  .service-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 24px; transition: border-color 0.2s, transform 0.2s;
+  }
+  .service-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-2px); }
+  .service-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .service-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .service-card p { font-size: 0.88rem; color: #909098; line-height: 1.6; }
+  .service-tag {
+    display: inline-block;
+    background: rgba(245,158,11,0.12); color: #fbbf24;
+    padding: 2px 10px; border-radius: 100px;
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .service-tag.archi { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .service-tag.spheres { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .service-tag.synergy { background: rgba(245,158,11,0.15); color: #fde68a; }
+  .service-tag.perso { background: rgba(34,197,94,0.15); color: #86efac; }
+  .service-tag.premium { background: rgba(168,85,247,0.15); color: #d8b4fe; }
+
+  /* ===== SYNERGIE ===== */
+  .synergy-block {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.08));
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 16px; padding: 32px; margin-top: 32px;
+  }
+  .synergy-block h3 { color: #fbbf24; font-size: 1.2rem; margin-bottom: 12px; }
+  .synergy-block p { color: #b0b0b8; font-size: 0.95rem; }
+  .synergy-example {
+    margin-top: 16px; padding: 16px; border-radius: 12px;
+    background: rgba(0,0,0,0.3); border-left: 3px solid #f59e0b;
+    font-style: italic; color: #d0d0d8; font-size: 0.9rem;
+  }
+
+  /* ===== PRIX ===== */
+  .pricing-card {
+    max-width: 500px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.08));
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 20px; padding: 40px; text-align: center;
+  }
+  .pricing-card .price { font-size: 3rem; font-weight: 800; color: #fbbf24; }
+  .pricing-card .price-sub { font-size: 1rem; color: #909098; margin-bottom: 20px; }
+  .pricing-card ul { list-style: none; text-align: left; margin: 24px 0; }
+  .pricing-card li { padding: 8px 0; font-size: 0.92rem; color: #b0b0b8; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .pricing-card li:last-child { border-bottom: none; }
+  .pricing-card li::before { content: "✓ "; color: #4ade80; font-weight: 700; }
+  .pricing-card .btn-primary { margin-top: 16px; }
+
+  /* ===== FAQ ===== */
+  .faq-grid { display: grid; gap: 16px; max-width: 700px; margin: 0 auto; }
+  .faq-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px; padding: 20px 24px;
+  }
+  .faq-item h3 { font-size: 1rem; margin-bottom: 6px; color: #e0e0e8; }
+  .faq-item p { font-size: 0.88rem; color: #808090; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center; padding: 48px 24px;
+    color: #505058; font-size: 0.8rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .profil-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .navbar-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="navbar">
+  <div class="navbar-logo">✦ Emmanuel 360°</div>
+  <ul class="navbar-links">
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#prix">Tarif</a></li>
+    <li><a href="#contact" class="nav-cta">Je veux mon agent</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge">✦ Proposition sur mesure</div>
+  <h1>Emmanuel 360°<br>2 business. 1 agent. 0 effort.</h1>
+  <p>Un assistant IA dédié à vos deux activités — Studio H-8 Architecture &amp; Groupe Sphères — et à votre vie quotidienne. Veille, prospection, synergie, le tout dans 1 bot Telegram.</p>
+  <div class="hero-btns">
+    <a href="#services" class="btn-primary">Découvrir les services →</a>
+    <a href="#prix" class="btn-secondary">Voir le tarif</a>
+  </div>
+</section>
+
+<!-- ===== PROFIL ===== -->
+<section id="profil">
+  <div class="section-inner">
+    <div class="section-label">👤 Qui êtes-vous</div>
+    <h2>Votre profil <span class="highlight">complet</span></h2>
+    <p class="section-sub">Emmanuel Duverrière — entrepreneur hybride, 2 business complémentaires.</p>
+
+    <div class="profil-grid">
+      <div class="profil-card">
+        <h3><span class="emoji">🏗️</span> Studio H-8 Architecture</h3>
+        <ul>
+          <li><strong>Rôle :</strong> Co-fondateur &amp; gérant (avec Léa)</li>
+          <li><strong>Métier :</strong> Architecture d'intérieur &amp; Curation d'objets</li>
+          <li><strong>Spécialité :</strong> Hospitality (bars, restaurants, hôtels)</li>
+          <li><strong>Aussi :</strong> Bureaux, maisons, appartements</li>
+          <li><strong>Clients :</strong> Ralph Lauren, Loro Piana...</li>
+          <li><strong>Locaux :</strong> Paris 10ᵉ + Zurich</li>
+        </ul>
+      </div>
+      <div class="profil-card">
+        <h3><span class="emoji">📰</span> Groupe Sphères</h3>
+        <ul>
+          <li><strong>Rôle :</strong> Co-dirigeant / Directeur associé</li>
+          <li><strong>Média :</strong> Sphères Magazine — journalisme long format</li>
+          <li><strong>Agence :</strong> Communication &amp; événementiel communautés</li>
+          <li><strong>Spécialité :</strong> Identifier et activer des communautés</li>
+          <li><strong>Projets :</strong> Marie Antoinette, Cojean</li>
+          <li><strong>Équipe :</strong> 6 salariés + freelance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="synergy-block">
+      <h3>🔗 La synergie qui fait la différence</h3>
+      <p>Vous êtes le seul à pouvoir connecter ces deux mondes. Les bars et hôtels que vous concevez sont des communautés que Sphères peut raconter. Les marques qui veulent toucher ces communautés ont besoin de vos deux métiers. Votre agent fait le lien automatiquement.</p>
+      <div class="synergy-example">
+        "Un nouveau bar à cocktails ouvre → ça peut faire un sujet Sphères ET un projet d'archi pour Studio H-8"
+      </div>
+      <div class="synergy-example" style="border-left-color: #ef4444; margin-top: 12px;">
+        "Une marque de luxe veut activer une communauté → Sphères conçoit le dispositif ET Studio H-8 conçoit le pop-up store"
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">⚙️ Services inclus</div>
+    <h2>Tout ce que votre agent <span class="highlight">fait pour vous</span></h2>
+    <p class="section-sub">Automatisé, livré sur Telegram, 0 effort. Les services premium sont intégrés — pas d'options.</p>
+
+    <div style="margin-bottom: 40px;">
+      <h3 style="color: #93c5fd; margin-bottom: 16px;">🏗️ Studio H-8 Architecture</h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-tag archi">Veille</span>
+          <div class="service-icon">🏗️</div>
+          <h3>Veille Hospitality &amp; Design</h3>
+          <p>Mardi &amp; jeudi 10h — Projets bars, restos, hôtels remarquables. Tendances matériaux, éclairage, mobilier. Architecture intérieure luxe mondiale.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag archi">Prospection</span>
+          <div class="service-icon">🎯</div>
+          <h3>Appels d'offres &amp; Prospection</h3>
+          <p>Mercredi — Nouveaux hôtels/restos/bars en construction Paris &amp; Zurich. Appels d'offres hospitality. Évolutions normes (RE2020, ERP, PLU).</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag premium">✨ Premium</span>
+          <div class="service-icon">📸</div>
+          <h3>Analyse photos projets</h3>
+          <p>Envoyez une photo de chantier ou de plan → analyse IA (Claude Vision) : conformité, matériaux, suggestions. Gagnez 30 min par dossier.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag premium">✨ Premium</span>
+          <div class="service-icon">📝</div>
+          <h3>Brief client automatique</h3>
+          <p>Questionnaire client → brief architectural structuré : besoins, budget, délais, style, inspirations. Prêt en 2 minutes.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag premium">✨ Premium</span>
+          <div class="service-icon">📐</div>
+          <h3>Fiches techniques projets</h3>
+          <p>Un prompt → fiche descriptive complète pour votre site web, portfolio, ou dossier de presse. Cohérent, soigné, prêt à publier.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag premium">✨ Premium</span>
+          <div class="service-icon">🗓️</div>
+          <h3>Suivi chantiers</h3>
+          <p>Rappels automatiques : étapes clés, rendez-vous artisans, livraisons matériaux. Zéro oubli, même sur plusieurs projets en parallèle.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+      <h3 style="color: #fca5a5; margin-bottom: 16px;">📰 Groupe Sphères</h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-tag spheres">Veille</span>
+          <div class="service-icon">📰</div>
+          <h3>Veille Médias &amp; Communautés</h3>
+          <p>Lundi 14h — Nouveaux médias long format. Communautés émergentes (futurs numéros). Actu librairie. Opportunités partenariats marques × communautés.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag spheres">Prospection</span>
+          <div class="service-icon">🎯</div>
+          <h3>Prospection Agence</h3>
+          <p>Vendredi — Marques cherchant à activer des communautés. Appels d'offres com' &amp; événementiel. Concurrents (autres médias, agences). Idées partenariats créatifs.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag spheres">Contenu</span>
+          <div class="service-icon">✍️</div>
+          <h3>Brainstorm Sujets Magazine</h3>
+          <p>Tendances détectées → 3 idées de numéros avec angle, pitch, sources potentielles. Inspirez la rédaction sans effort.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag spheres">Stratégie</span>
+          <div class="service-icon">📡</div>
+          <h3>Analyse Campagnes Communautaires</h3>
+          <p>Veille des campagnes marques qui activent des communautés. Décortiquez ce qui marche. Proposez à vos clients.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+      <h3 style="color: #fde68a; margin-bottom: 16px;">🔗 Synergie — Le vrai plus</h3>
+      <div class="services-grid">
+        <div class="service-card" style="border-color: rgba(245,158,11,0.3);">
+          <span class="service-tag synergy">Automatique</span>
+          <div class="service-icon">🔗</div>
+          <h3>Détection d'opportunités croisées</h3>
+          <p>L'agent surveille les 2 marchés simultanément et détecte les situations où vos deux business peuvent travailler ensemble. Un deal que vous seul pouvez capter.</p>
+        </div>
+        <div class="service-card" style="border-color: rgba(245,158,11,0.3);">
+          <span class="service-tag synergy">Réseau</span>
+          <div class="service-icon">🤝</div>
+          <h3>Activation réseau spirits</h3>
+          <p>L'agent croise vos contacts Pernod Ricard avec vos projets hospitality. "Cet hôtel cherche un champagne partenaire → vous connaissez du monde."</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="color: #86efac; margin-bottom: 16px;">👨‍👩‍👧‍👧 Vie perso &amp; Famille</h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-tag perso">Quotidien</span>
+          <div class="service-icon">🏠</div>
+          <h3>Planning familial</h3>
+          <p>RDV médicaux, école, courses. Rappels anniversaires, factures, échéances administratives. Météo + trafic (Vitry ↔ Paris 10ᵉ ↔ Zurich).</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag perso">Passion</span>
+          <div class="service-icon">🍽️</div>
+          <h3>Gastronomie &amp; Inspiration</h3>
+          <p>Suggestions menus de saison. Idées dîners pour recevoir clients &amp; amis. Nouveautés food, vins, spiritueux. Alimente aussi votre inspiration hospitality.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag perso">Sorties</span>
+          <div class="service-icon">🎭</div>
+          <h3>Idées sorties &amp; Culture</h3>
+          <p>Expos archi &amp; design, nouveaux restos, événements Paris/94. Suggestions week-end qui marient plaisir perso et inspiration pro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SYNERGIE DÉTAIL ===== -->
+<section style="background: rgba(245,158,11,0.02);">
+  <div class="section-inner">
+    <div class="section-label">🔗 Le super-pouvoir</div>
+    <h2>2 métiers, <span class="highlight">1 agent qui les connecte</span></h2>
+    <p class="section-sub">Personne d'autre ne peut faire ce que vous faites. Votre agent est le seul à comprendre vos deux mondes.</p>
+
+    <div class="profil-grid">
+      <div class="synergy-block" style="margin-top: 0;">
+        <h3>📱 Lundi 7h30 — Briefing matinal</h3>
+        <div class="synergy-example" style="margin-top: 8px;">
+          "Un nouvel hôtel boutique ouvre dans le 10ᵉ. Il cherche un architecte d'intérieur pour son rooftop bar ET une marque de champagne pour le lancer."
+        </div>
+        <div class="synergy-example" style="border-left-color: #ef4444; margin-top: 8px;">
+          "Le collectif X lance une résidence éphémère → sujet pour Sphères ET potentiel projet d'aménagement pour Studio H-8."
+        </div>
+      </div>
+      <div class="synergy-block" style="margin-top: 0;">
+        <h3>💬 Mercredi 15h — /aide</h3>
+        <div class="synergy-example" style="margin-top: 8px;">
+          Vous : "Je cherche un fournisseur de carrelage terrazzo pour un projet resto"<br>
+          Agent : → réponse sous 30 min avec 3 fournisseurs sourcés
+        </div>
+        <div class="synergy-example" style="border-left-color: #f59e0b; margin-top: 8px;">
+          Vous : "Je reçois un client champagne la semaine pro, idées de dîner ?"<br>
+          Agent : → 3 suggestions accord mets-champagne + adresses
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRIX ===== -->
+<section id="prix">
+  <div class="section-inner">
+    <div class="section-label">💰 Investissement</div>
+    <h2>Une formule unique <span class="highlight">tout compris</span></h2>
+    <p class="section-sub">Pas d'option, pas de supplément. Tous les services sont inclus dans l'abonnement.</p>
+
+    <div class="pricing-card">
+      <div class="price">199€</div>
+      <div class="price-sub">/ mois — sans engagement</div>
+      <ul>
+        <li>Veille Hospitality ×2/semaine</li>
+        <li>Prospection appels d'offres &amp; marchés</li>
+        <li>Veille Médias &amp; Communautés Sphères</li>
+        <li>Prospection agence de communication</li>
+        <li><strong>Synergie automatique</strong> entre vos 2 business</li>
+        <li>✨ Analyse photos projets (Claude Vision)</li>
+        <li>✨ Brief client automatique</li>
+        <li>✨ Fiches techniques projets</li>
+        <li>✨ Suivi chantiers &amp; échéances</li>
+        <li>🧑 Vie perso : planning, rappels, gastronomie, sorties</li>
+        <li>💬 Bot Telegram dédié (vos 2 métiers, 1 chat)</li>
+        <li>🆘 /aide → réponse sous 30 min</li>
+        <li>📊 Rapport hebdo chaque lundi</li>
+        <li>🔒 Profil isolé, données privées, zéro partage</li>
+        <li>☁️ 0€ de coût LLM — crons no_agent silencieux</li>
+        <li>📅 Mise en place sous 5 jours ouvrés</li>
+      </ul>
+      <a href="#contact" class="btn-primary">Je veux mon agent →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">❓ FAQ</div>
+    <h2>Questions <span class="highlight">fréquentes</span></h2>
+    <p class="section-sub">Tout ce que vous devez savoir.</p>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Comment ça marche concrètement ?</h3>
+        <p>Vous recevez un bot Telegram. Chaque matin, vos briefings arrivent automatiquement. Vous tapez /aide si vous avez besoin de quelque chose. C'est tout.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Je ne suis pas technique, c'est compliqué ?</h3>
+        <p>Zéro installation. On configure tout en 5 jours. Vous n'avez rien à faire à part lire vos messages.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Est-ce que mes données sont protégées ?</h3>
+        <p>Profil totalement isolé. Aucun partage avec d'autres clients. Vos données restent vos données.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Et si je veux arrêter ?</h3>
+        <p>Sans engagement. Vous arrêtez quand vous voulez, sans frais.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Qu'est-ce qui change par rapport à une veille Google Alerts ?</h3>
+        <p>Tout est sourcé, filtré, structuré pour vos 2 métiers. Google Alerts ne croise pas l'archi et les communautés. Votre agent le fait pour vous.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / CTA ===== -->
+<section id="contact" style="background: radial-gradient(ellipse at 50% 50%, rgba(239,68,68,0.06) 0%, transparent 60%);">
+  <div class="section-inner" style="text-align: center;">
+    <div class="section-label">🚀 Prêt ?</div>
+    <h2>Votre agent <span class="highlight">dans 5 jours</span></h2>
+    <p class="section-sub" style="margin: 0 auto 32px;">
+      On discute 15 min de vos besoins, je configure tout, et vous recevez votre premier briefing.
+    </p>
+    <a href="mailto:contact@h-8.fr?subject=Emmanuel%20360%C2%B0%20%E2%80%94%20Je%20veux%20mon%20agent%20IA" class="btn-primary" style="font-size: 1.1rem;">
+      ✦ Démarrer → contact@h-8.fr
+    </a>
+    <p style="color: #505058; font-size: 0.85rem; margin-top: 16px;">
+      Ou parlez-en à Fabrice qui vous présentera tout ça.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Emmanuel 360° — Proposition sur mesure · 2026</p>
+  <p style="margin-top: 4px;">Propulsé par Hermes Agent · DellSeb</p>
+</footer>
+
+</body>
+</html>
